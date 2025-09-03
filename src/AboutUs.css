@@ -1,0 +1,306 @@
+.lacrrion-about {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #4a5aa8 0%, #3d4a94 30%, #2d3a7f 70%, #1e2a5e 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.about-card {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  background: transparent;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-card .gym-background {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%; height: 100%;
+  background: url('./assets/Gym.jpg') center center / cover no-repeat;
+  z-index: 1;
+}
+
+.about-card .dark-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%; height: 100%;
+  background: rgba(74, 90, 168, 0.75);
+  z-index: 2;
+}
+
+.about-card .light-streak {
+  position: absolute;
+  z-index: 3;
+}
+
+.light-streak-1 {
+  top: -10%;
+  left: -20%;
+  width: 200%;
+  height: 3px;
+  transform: rotate(25deg);
+  animation: lightMove1 8s ease-in-out infinite;
+}
+
+.light-streak-2 {
+  top: 30%;
+  right: -30%;
+  width: 150%;
+  height: 2px;
+  transform: rotate(-15deg);
+  animation: lightMove2 10s ease-in-out infinite;
+}
+
+.light-streak-3 {
+  bottom: 20%;
+  left: -25%;
+  width: 180%;
+  height: 2px;
+  transform: rotate(35deg);
+  animation: lightMove3 12s ease-in-out infinite;
+}
+
+@keyframes lightMove1 {
+  0%, 100% { opacity: 0.1; transform: rotate(25deg) translateX(0); }
+  50% { opacity: 0.3; transform: rotate(25deg) translateX(20px); }
+}
+
+@keyframes lightMove2 {
+  0%, 100% { opacity: 0.1; transform: rotate(-15deg) translateX(0); }
+  50% { opacity: 0.2; transform: rotate(-15deg) translateX(-30px); }
+}
+
+@keyframes lightMove3 {
+  0%, 100% { opacity: 0.1; transform: rotate(35deg) translateX(0); }
+  50% { opacity: 0.2; transform: rotate(35deg) translateX(15px); }
+}
+
+.content-container {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  background: none;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-section {
+  margin-bottom: 3rem;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.logo-icon {
+  width: 6rem;
+  height: 6rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.1125);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.logo-icon span {
+  font-size: 2.25rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.logo-text {
+  color: rgba(255,255,255,0.75);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.375);
+}
+
+.main-heading {
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 48px;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 4rem;
+  letter-spacing: 0.1em;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  animation: fadeInUp 1.2s ease-out 0.3s both;
+}
+
+.content-text {
+  max-width: 60rem;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.8;
+  font-size: 1.1rem;
+  animation: fadeInUp 1.2s ease-out 0.6s both;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-block {
+  margin-bottom: 2.5rem;
+  padding: 0 2rem;
+  background: rgba(255, 255, 255, 0.0225);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cta-section {
+  margin-top: 4rem;
+  animation: fadeInUp 1.2s ease-out 0.9s both;
+}
+
+.cta-text {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  font-family: 'Instrument Sans', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.cta-button {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #d63031 100%);
+  color: white;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.9rem;
+  box-shadow: 
+    0 8px 25px rgba(238, 90, 36, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.075);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.cta-button.hovered::before {
+  left: 100%;
+}
+
+.cta-button.hovered {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 
+    0 15px 35px rgba(238, 90, 36, 0.375),
+    inset 0 1px 0 rgba(255, 255, 255, 0.225);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .content-container {
+    padding: 1.5rem;
+  }
+  
+  .main-heading {
+    font-size: 2.75rem;
+    margin-bottom: 3rem;
+  }
+  
+  .content-text {
+    font-size: 1rem;
+  }
+  
+  .text-block {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .logo-icon {
+    width: 5rem;
+    height: 5rem;
+  }
+  
+  .logo-icon span {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-container {
+    padding: 1rem;
+  }
+  
+  .main-heading {
+    font-size: 2.25rem;
+  }
+  
+  .logo-icon {
+    width: 4rem;
+    height: 4rem;
+  }
+  
+  .logo-icon span {
+    font-size: 1.5rem;
+  }
+  
+  .cta-button {
+    padding: 0.875rem 2rem;
+    font-size: 0.8rem;
+  }
+  
+  .text-block {
+    padding: 1.25rem;
+  }
+}
