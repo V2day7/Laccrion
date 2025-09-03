@@ -1,0 +1,159 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-page {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  color: #222;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  overflow: hidden;
+}
+
+.login-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('./assets/fitness.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5; /* Adjust image opacity */
+  z-index: 0;
+}
+
+.login-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 62, 160, 0.5); /* Semi-transparent blue overlay */
+  z-index: 1;
+}
+
+.login-container,
+.right-section {
+  position: relative;
+  z-index: 2;
+}
+
+.login-container {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+  padding: 32px 40px;
+  margin: auto 0 auto 60px;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-container h2 {
+  margin-bottom: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 16px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.forgot-row {
+  text-align: right;
+  margin-bottom: 8px;
+}
+
+.forgot-link {
+  color: #4f4fcf;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.sign-in-btn {
+  background: #4f4fcf;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.create-account-row {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 1rem;
+}
+
+.create-account-link {
+  color: #4f4fcf;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.right-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 240px; /* Increased from 60px to 120px */
+  color: #fff;
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.logo {
+  height: 40px;
+}
+
+.brand-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.main-title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  max-width: 600px;
+}
+
+.subtitle2 {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  margin-top: 8px;
+}
