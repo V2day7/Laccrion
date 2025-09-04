@@ -1,10 +1,21 @@
-import LoginSignup from './LoginSignup';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
+import LoginSignup from "./LoginSignup";
+import AboutUs from "./AboutUs";
 
 function App() {
   return (
-    <div>
-      <LoginSignup />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginSignup />} />
+        <Route path="/AboutUs" element={<AboutUs />} />
+      </Routes>
+    </Router>
   );
 }
 
