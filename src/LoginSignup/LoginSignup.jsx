@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import './LoginSignup.css';
-import fitnessBg from './assets/fitness.jpg'; // Import your image
+import React, { useState } from "react";
+import "./LoginSignup.css";
+import fitnessBg from "../assets/fitness.jpg"; // Import your image
 
-function App() {
+export default function LoginSignup() {
   const [showSignup, setShowSignup] = useState(false);
 
   return (
@@ -10,8 +10,8 @@ function App() {
       className="login-page"
       style={{
         backgroundImage: `url(${fitnessBg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <div className="login-container">
@@ -35,16 +35,28 @@ function App() {
                 autoComplete="current-password"
               />
               <div className="forgot-row">
-                <a href="#" className="forgot-link">Forgot Password</a>
+                <a href="#" className="forgot-link">
+                  Forgot Password
+                </a>
               </div>
-              <button type="submit" className="sign-in-btn">Sign In</button>
+              <button type="submit" className="sign-in-btn">
+                Sign In
+              </button>
             </form>
             <div className="create-account-row">
               <span>Are you new? </span>
               <button
                 type="button"
                 className="create-account-link"
-                style={{ background: 'none', border: 'none', padding: 0, color: '#4f4fcf', cursor: 'pointer', textDecoration: 'underline', fontWeight: 500 }}
+                style={{
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  color: "#4f4fcf",
+                  cursor: "pointer",
+                  textDecoration: "underline",
+                  fontWeight: 500,
+                }}
                 onClick={() => setShowSignup(true)}
               >
                 Create an Account
@@ -84,14 +96,24 @@ function App() {
                 placeholder="Re-enter your password"
                 autoComplete="new-password"
               />
-              <button type="submit" className="sign-in-btn">Sign Up</button>
+              <button type="submit" className="sign-in-btn">
+                Sign Up
+              </button>
             </form>
             <div className="create-account-row">
               <span>Already have an account? </span>
               <button
                 type="button"
                 className="create-account-link"
-                style={{ background: 'none', border: 'none', padding: 0, color: '#4f4fcf', cursor: 'pointer', textDecoration: 'underline', fontWeight: 500 }}
+                style={{
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  color: "#4f4fcf",
+                  cursor: "pointer",
+                  textDecoration: "underline",
+                  fontWeight: 500,
+                }}
                 onClick={() => setShowSignup(false)}
               >
                 Login
@@ -107,5 +129,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

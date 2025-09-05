@@ -5,9 +5,10 @@ import {
   Outlet,
   Navigate,
 } from "react-router-dom";
-import LoginSignup from "./LoginSignup";
-import AboutUs from "./AboutUs";
-import LandingPage from "./LandingPage";
+import LoginSignup from "./LoginSignup/LoginSignup.jsx";
+import AboutUs from "./AboutUs/AboutUs.jsx";
+import LandingPage from "./LandingPage/LandingPage.jsx";
+
 function App() {
   return (
     <Router>
@@ -15,7 +16,6 @@ function App() {
         <Route path="/" element={<LoginSignup />} />
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/LandingPage" element={<LandingPage />} />
-
       </Routes>
     </Router>
   );

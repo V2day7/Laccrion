@@ -1,10 +1,10 @@
 import React from "react";
 import "./LandingPage.css";
 
-import strengthIcon from "./assets/Strength.png";
-import calisthenicsIcon from "./assets/Calisthenic.png";
-import cardioIcon from "./assets/Cardio.png";
-import hybridIcon from "./assets/Hybrid.png";
+import strengthIcon from "../assets/Strength.png";
+import calisthenicsIcon from "../assets/Calisthenic.png";
+import cardioIcon from "../assets/Cardio.png";
+import hybridIcon from "../assets/Hybrid.png";
 
 export default function LandingPage() {
   return (
