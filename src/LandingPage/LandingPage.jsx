@@ -1,6 +1,5 @@
 import React from "react";
 import "./LandingPage.css";
-
 import strengthIcon from "../assets/Strength.png";
 import calisthenicsIcon from "../assets/Calisthenic.png";
 import cardioIcon from "../assets/Cardio.png";
