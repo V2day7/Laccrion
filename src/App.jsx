@@ -8,7 +8,7 @@ import {
 import LoginSignup from "./LoginSignup/LoginSignup.jsx";
 import AboutUs from "./AboutUs/AboutUs.jsx";
 import LandingPage from "./LandingPage/LandingPage.jsx";
-import Sidebar from "./sidebar/Sidebar.jsx";
+
 function App() {
   return (
     <Router>
@@ -16,6 +16,8 @@ function App() {
         <Route path="/" element={<LoginSignup />} />
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/LandingPage" element={<LandingPage />} />
+        <Route path="/Shop" element={<Shop />} />
+        <Route path="/Inventory" element={<Inventory />} />
         <Route path="/Sidebar" element={<Sidebar />} />
       </Routes>
     </Router>
