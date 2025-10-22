@@ -1,0 +1,158 @@
+.QuestCardParent {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.QuestCardContent {
+  display: flex;
+  align-items: center;
+  background-color: #26a69a;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #ebebeb;
+  width: 100%; /* ✅ CHANGED: Full width of parent */
+  max-width: 450px; /* ✅ ADDED: Max width constraint */
+  min-height: 70px;
+  margin: 10px 0;
+  overflow: hidden;
+  box-sizing: border-box; /* ✅ ADDED */
+}
+
+.QuestCardCheckbox {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 16px;
+  border-radius: 6px;
+  flex-shrink: 0; /* ✅ ADDED: Prevent shrinking */
+}
+
+.QuestCardCheckbox input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  accent-color: #222;
+}
+
+.QuestCardText {
+  flex: 1;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-left: 18px;
+  margin-right: 12px;
+  text-align: left;
+  line-height: 1.2;
+  min-width: 0; /* ✅ ADDED: Allow text to shrink */
+}
+
+.QuestCardIcon {
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0; /* ✅ ADDED: Prevent shrinking */
+}
+
+.QuestCardIcon img {
+  width: 32px;
+  height: 32px;
+  filter: brightness(0) invert(1);
+}
+
+.QuestCardXPandCoinsParent {
+  background-color: #ebebeb;
+  color: #000;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 0 18px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  border-radius: 0 12px 12px 0;
+  min-width: 70px;
+  flex-shrink: 0; /* ✅ ADDED: Prevent shrinking */
+}
+
+.QuestXP {
+  margin-bottom: 6px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #000;
+}
+
+.QuestCoinsRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.CoinsImg {
+  width: 22px;
+  height: 22px;
+  margin-right: 2px;
+  filter: none;
+}
+
+.QuestCoins {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000;
+  margin-left: 0;
+}
+
+/* Gamified card effect */
+.gamified-card {
+  cursor: pointer;
+  transition: box-shadow 0.18s, transform 0.12s, background 0.18s;
+  outline: none;
+  border: none;
+  padding: 0;
+}
+
+.gamified-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 1px 4px #26a69a;
+}
+
+.gamified-card.checked {
+  background: linear-gradient(90deg, #26a69a 80%, #4a569a 100%);
+  box-shadow: 0 4px 16px #26a69a44;
+}
+
+/* Optional: Animate XP on check */
+.gamified-card.checked .QuestCardXPandCoinsParent {
+  animation: popxp 0.3s;
+  background: #26a69a;
+  color: #fff;
+}
+
+@keyframes popxp {
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ✅ Responsive adjustments */
+@media (max-width: 480px) {
+  .QuestCardContent {
+    max-width: 100%;
+  }
+
+  .QuestCardText {
+    font-size: 0.9rem;
+  }
+
+  .QuestXP,
+  .QuestCoins {
+    font-size: 1rem;
+  }
+}

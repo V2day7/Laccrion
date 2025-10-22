@@ -11,6 +11,9 @@ import Logout from "../assets/logout.png";
 
 export default function MenuList() {
   const [selectedKeys, setSelectedKeys] = React.useState([]);
+  const handleMenuClick = ({ key }) => {
+    setSelectedKeys([key]);
+  };
 
   const navigate = useNavigate();
 
@@ -20,12 +23,18 @@ export default function MenuList() {
       icon: <img src={Home} alt="Home" className="menu-icon" />,
       label: "Home",
       style: { color: "white" },
+      onClick: () => {
+        navigate("/HomePage");
+      },
     },
     {
       key: "Shop",
       icon: <img src={Shop} alt="Shop" className="menu-icon" />,
       label: "Shop",
       style: { color: "white" },
+      onClick: () => {
+        navigate("/Shop");
+      },
     },
     {
       key: "History",
@@ -38,6 +47,9 @@ export default function MenuList() {
       icon: <img src={Backpack} alt="Inventory" className="menu-icon" />,
       label: "Inventory",
       style: { color: "white" },
+      onClick: () => {
+        navigate("/Inventory");
+      },
     },
     {
       key: "Profile",

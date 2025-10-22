@@ -6,7 +6,7 @@ import Menulist from "./MenuList.jsx";
 import { CaretLeftOutlined, CaretRightOutlined } from "@ant-design/icons";
 
 const { Header, Sider } = Layout;
-export default function Navbar() {
+export default function Sidebar() {
   const [collapsed, setCollapsed] = React.useState(true);
 
   return (

@@ -1,0 +1,27 @@
+/* ExpBar.css */
+.exp-bar {
+  position: relative;
+  width: 100%;
+  height: 25px;
+  background-color: #222;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 5px #000 inset;
+}
+
+.exp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00b4ff, #0077ff);
+  transition: width 0.5s ease-in-out;
+}
+
+.exp-text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  top: 50%;
+  transform: translateY(-50%);
+}

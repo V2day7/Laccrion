@@ -1,0 +1,40 @@
+.main-layout {
+  display: grid;
+  grid-template-columns: auto 1fr; /* Sidebar + main section */
+  grid-template-rows: auto 1fr; /* Header + content */
+  grid-template-areas:
+    "sidebar header"
+    "sidebar content";
+  gap: 12px;
+  height: 100vh;
+  padding: 12px;
+  overflow: hidden; /* ✅ Prevent parent scroll */
+  box-sizing: border-box; /* ✅ Include padding in height */
+  /* padding: 10px; */
+}
+
+/* Sidebar fixed on the left */
+.sidebar {
+  grid-area: sidebar;
+}
+
+/* Header spans across top */
+.header {
+  grid-area: header;
+  overflow: hidden; /* ✅ Prevent header scroll */
+  /* padding: 5px; */
+  margin-top: 8px;
+  /* background-color: aqua; */
+}
+
+/* Main content area - THIS IS KEY */
+.page-body {
+  grid-area: content;
+  border-radius: 12px;
+  display: flex;
+  overflow: hidden; /* ✅ CRITICAL: Prevent page-body scroll */
+  /* Child components handle their own scroll */
+  margin-top: 10px;
+  /* background-color: rgb(11, 113, 202); */
+  /* padding: 8px; */
+}
