@@ -413,8 +413,8 @@ export default function Homepage() {
 
     return bonusRewards.map((reward, i) => {
       const rarityColors = {
-        common: "#888888",
-        rare: "#4A90E2",
+        common: "#95A5A6",
+        rare: "#3498DB",
         epic: "#9B59B6",
         legendary: "#F39C12",
       };
@@ -453,6 +453,11 @@ export default function Homepage() {
               )
             }
             onComplete={(bonus_id) => handleBonusComplete(bonus_id, i)}
+            trackingType={reward.tracking_type}
+            isAutoTracked={reward.tracking_type === "auto"}
+            currentProgress={parseInt(reward.current_progress) || 0}
+            requiredProgress={parseInt(reward.required_progress) || 1}
+            description={reward.description || ""}
           />
         </div>
       );

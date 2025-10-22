@@ -9,13 +9,24 @@
   align-items: center;
   background-color: #26a69a;
   border-radius: 12px;
-  box-shadow: 0 2px 8px #ebebeb;
-  width: 100%; /* ✅ CHANGED: Full width of parent */
-  max-width: 450px; /* ✅ ADDED: Max width constraint */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
   min-height: 70px;
   margin: 10px 0;
   overflow: hidden;
-  box-sizing: border-box; /* ✅ ADDED */
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.QuestCardContent.expanded {
+  min-height: 95px;
+}
+
+.QuestCardContent.auto-tracked {
+  background: linear-gradient(135deg, #26a69a 0%, #1f8a7d 100%);
+  border-left: 4px solid #ffd700;
+  cursor: default;
 }
 
 .QuestCardCheckbox {
@@ -26,38 +37,198 @@
   justify-content: center;
   margin-left: 16px;
   border-radius: 6px;
-  flex-shrink: 0; /* ✅ ADDED: Prevent shrinking */
+  flex-shrink: 0;
 }
 
 .QuestCardCheckbox input[type="checkbox"] {
   width: 22px;
   height: 22px;
   accent-color: #222;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.QuestCardCheckbox input[type="checkbox"]:hover {
+  transform: scale(1.1);
+}
+
+.auto-lock-icon {
+  font-size: 24px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  opacity: 0.9;
+}
+
+.QuestCardTextContainer {
+  flex: 1;
+  margin-left: 18px;
+  margin-right: 12px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.QuestCardTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .QuestCardText {
-  flex: 1;
   color: #fff;
   font-size: 1rem;
   font-weight: 600;
-  margin-left: 18px;
-  margin-right: 12px;
   text-align: left;
-  line-height: 1.2;
-  min-width: 0; /* ✅ ADDED: Allow text to shrink */
+  line-height: 1.3;
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+}
+
+/* ✅ IMPROVED: Better info button */
+.info-icon-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.info-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.05);
+}
+
+.info-icon-btn.active {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: #ffd700;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.info-icon-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ✅ IMPROVED: Better description box */
+.description-box {
+  animation: slideDown 0.3s ease;
+  margin-top: 4px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.description-content {
+  background: rgba(255, 255, 255, 0.12);
+  border-left: 3px solid #ffd700;
+  border-radius: 6px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  backdrop-filter: blur(4px);
+}
+
+.description-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.description-text {
+  color: #fff;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin: 0;
+  text-align: left;
+  opacity: 0.95;
+  font-weight: 400;
+}
+
+/* ✅ IMPROVED: Better progress section */
+.progress-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.progress-bar-container {
+  position: relative;
+  flex: 1;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd700 0%, #ffed4e 100%);
+  border-radius: 5px;
+  transition: width 0.4s ease;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.progress-inner-text {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.7);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.progress-text {
+  font-size: 0.8rem;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 40px;
+  text-align: right;
 }
 
 .QuestCardIcon {
   margin-right: 12px;
   display: flex;
   align-items: center;
-  flex-shrink: 0; /* ✅ ADDED: Prevent shrinking */
+  flex-shrink: 0;
 }
 
 .QuestCardIcon img {
   width: 32px;
   height: 32px;
   filter: brightness(0) invert(1);
+  transition: transform 0.2s ease;
+}
+
+.QuestCardContent:hover .QuestCardIcon img {
+  transform: scale(1.05);
 }
 
 .QuestCardXPandCoinsParent {
@@ -72,13 +243,28 @@
   align-items: flex-end;
   justify-content: center;
   border-radius: 0 12px 12px 0;
-  min-width: 70px;
-  flex-shrink: 0; /* ✅ ADDED: Prevent shrinking */
+  min-width: 80px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.auto-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 3px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .QuestXP {
   margin-bottom: 6px;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #000;
 }
@@ -90,39 +276,37 @@
 }
 
 .CoinsImg {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   margin-right: 2px;
   filter: none;
 }
 
 .QuestCoins {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #000;
-  margin-left: 0;
 }
 
-/* Gamified card effect */
-.gamified-card {
+.gamified-card:not(.auto-tracked) {
   cursor: pointer;
   transition: box-shadow 0.18s, transform 0.12s, background 0.18s;
-  outline: none;
-  border: none;
-  padding: 0;
 }
 
-.gamified-card:active {
+.gamified-card:not(.auto-tracked):hover {
+  box-shadow: 0 4px 12px rgba(38, 166, 154, 0.3);
+}
+
+.gamified-card:not(.auto-tracked):active {
   transform: scale(0.98);
-  box-shadow: 0 1px 4px #26a69a;
+  box-shadow: 0 1px 4px rgba(38, 166, 154, 0.4);
 }
 
 .gamified-card.checked {
   background: linear-gradient(90deg, #26a69a 80%, #4a569a 100%);
-  box-shadow: 0 4px 16px #26a69a44;
+  box-shadow: 0 4px 16px rgba(38, 166, 154, 0.4);
 }
 
-/* Optional: Animate XP on check */
 .gamified-card.checked .QuestCardXPandCoinsParent {
   animation: popxp 0.3s;
   background: #26a69a;
@@ -130,18 +314,16 @@
 }
 
 @keyframes popxp {
-  0% {
-    transform: scale(1);
-  }
-  60% {
-    transform: scale(1.18);
-  }
+  0%,
   100% {
     transform: scale(1);
   }
+  50% {
+    transform: scale(1.1);
+  }
 }
 
-/* ✅ Responsive adjustments */
+/* ✅ Responsive Design */
 @media (max-width: 480px) {
   .QuestCardContent {
     max-width: 100%;
@@ -151,8 +333,26 @@
     font-size: 0.9rem;
   }
 
+  .description-text {
+    font-size: 0.8rem;
+  }
+
+  .info-icon-btn {
+    width: 26px;
+    height: 26px;
+  }
+
+  .info-icon-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
   .QuestXP,
   .QuestCoins {
     font-size: 1rem;
+  }
+
+  .progress-text {
+    font-size: 0.75rem;
   }
 }
