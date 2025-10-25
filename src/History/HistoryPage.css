@@ -1,0 +1,31 @@
+body, .history-page {
+  background-color: #fff;
+}
+
+.history-page {
+  padding: 40px;
+  min-height: 100vh;
+}
+
+.history-page h1 {
+    color: black;
+  margin-left: 40px;
+  margin-bottom: 32px;
+  font-size: 2rem;      
+  font-weight: bold;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.card-header {
+  font-size: 1.4rem !important;
+}
+
+.card-body {
+  font-size: 1rem;
+}
