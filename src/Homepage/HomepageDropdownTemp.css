@@ -1,0 +1,130 @@
+.DropdownTempParent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0; /* ✅ Prevent shrinking */
+}
+
+/* Header button-like style */
+.DropdownTempHeader {
+  background-color: #4a569a;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 10px 0 0;
+  color: #ffffff;
+  padding: 12px;
+  height: 60px;
+  box-shadow: 0 2px 4px #d9d9d9;
+  font-size: 1rem;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+.DropdownTempHeader h1 {
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ✅ Card body - FIXED HEIGHT WITH SCROLL */
+.BottomContents {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 480px; /* ✅ INCREASED to fit cards */
+  height: 500px; /* ✅ FIXED HEIGHT - Enables scrolling! */
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 6px #ebebeb;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-y: auto; /* ✅ ENABLE SCROLL */
+  overflow-x: hidden; /* ✅ Hide horizontal overflow */
+}
+
+/* ✅ Custom Scrollbar */
+.BottomContents::-webkit-scrollbar {
+  width: 8px;
+}
+
+.BottomContents::-webkit-scrollbar-track {
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 10px;
+}
+
+.BottomContents::-webkit-scrollbar-thumb {
+  background: #4a569a;
+  border-radius: 10px;
+}
+
+.BottomContents::-webkit-scrollbar-thumb:hover {
+  background: #3a4680;
+}
+
+.xp-text {
+  color: #000000;
+  display: flex; /* ✅ ADDED */
+  flex-direction: column;
+  text-align: center;
+  border-radius: 6px;
+  padding: 6px 0;
+  margin: 0; /* ✅ Remove bottom margin */
+}
+
+.BottomContents button {
+  margin: 16px auto 8px auto; /* ✅ Reduced top margin */
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #26a69a;
+  background: #d9d9d9;
+  color: #4a569a;
+  font-size: 2rem;
+  font-family: "Press Start 2P", "VT323", "Orbitron", "Arial Black", Arial,
+    sans-serif;
+  font-weight: bold;
+  box-shadow: 0 2px 8px #ebebeb;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border 0.18s, transform 0.12s;
+  outline: none;
+  flex-shrink: 0; /* ✅ Prevent button shrinking */
+}
+
+.BottomContents button:hover,
+.BottomContents button:focus {
+  background: #26a69a;
+  color: #ffffff;
+  border: 2px solid #4a569a;
+  transform: scale(1.08);
+}
+
+/* RESPONSIVENESS */
+@media (max-width: 768px) {
+  .DropdownTempHeader,
+  .BottomContents {
+    max-width: 100%;
+  }
+
+  .BottomContents {
+    height: 400px; /* ✅ Shorter on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .DropdownTempHeader,
+  .BottomContents {
+    max-width: 95%;
+  }
+
+  .DropdownTempHeader h1 {
+    font-size: 0.95rem;
+  }
+
+  .BottomContents {
+    height: 350px; /* ✅ Even shorter on mobile */
+  }
+}
