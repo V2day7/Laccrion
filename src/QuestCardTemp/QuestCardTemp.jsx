@@ -6,7 +6,6 @@ import CoinsImg from "../assets/CoinsB.png";
 export default function QuestCardTemp({
   quest_id,
   QuestText,
-  QuestImage,
   QuestXP,
   QuestCoin,
   checked,
@@ -17,8 +16,19 @@ export default function QuestCardTemp({
   requiredProgress = 1,
   trackingType = "manual",
   description = "",
+  trackingCondition = "",
 }) {
   const [showDescription, setShowDescription] = useState(false);
+
+  // 🔍 DEBUG: Log props
+  console.log("QuestCardTemp Props:", {
+    quest_id,
+    QuestText,
+    QuestXP,
+    QuestCoin,
+    trackingType,
+    trackingCondition,
+  });
 
   const handleCheckboxChange = (e) => {
     e.stopPropagation();
@@ -44,12 +54,71 @@ export default function QuestCardTemp({
       ? Math.min((currentProgress / requiredProgress) * 100, 100)
       : 0;
 
+  const getPathInfo = () => {
+    if (trackingType === "manual") {
+      return {
+        name: "MANUAL",
+        icon: "✋",
+        color: "#95A5A6",
+        gradient: "linear-gradient(135deg, #95A5A6, #7F8C8D)",
+      };
+    }
+
+    const condition = trackingCondition.toLowerCase();
+
+    if (condition.includes("workout")) {
+      return {
+        name: "STR",
+        icon: "💪",
+        color: "#E74C3C",
+        gradient: "linear-gradient(135deg, #E74C3C, #C0392B)",
+        progressGradient: "linear-gradient(90deg, #E74C3C, #FF6B6B)",
+      };
+    }
+
+    if (condition.includes("quest")) {
+      return {
+        name: "HYB",
+        icon: "🎯",
+        color: "#27AE60",
+        gradient: "linear-gradient(135deg, #27AE60, #229954)",
+        progressGradient: "linear-gradient(90deg, #27AE60, #2ECC71)",
+      };
+    }
+
+    if (condition.includes("consecutive") || condition.includes("week")) {
+      return {
+        name: "END",
+        icon: "⛰️",
+        color: "#9B59B6",
+        gradient: "linear-gradient(135deg, #9B59B6, #8E44AD)",
+        progressGradient: "linear-gradient(90deg, #9B59B6, #B565D8)",
+      };
+    }
+
+    return {
+      name: "AUTO",
+      icon: "🤖",
+      color: "#3498DB",
+      gradient: "linear-gradient(135deg, #3498DB, #2980B9)",
+      progressGradient: "linear-gradient(90deg, #3498DB, #5DADE2)",
+    };
+  };
+
+  const pathInfo = getPathInfo();
+
+  // 🔍 DEBUG: Log pathInfo
+  console.log("PathInfo:", pathInfo);
+
   return (
     <div className="QuestCardParent">
       <div
         className={`QuestCardContent gamified-card${checked ? " checked" : ""}${
           trackingType === "auto" ? " auto-tracked" : ""
         }${showDescription ? " expanded" : ""}`}
+        style={{
+          borderLeft: `4px solid ${pathInfo.color}`,
+        }}
         tabIndex={0}
         role="button"
         aria-pressed={checked}
@@ -83,8 +152,8 @@ export default function QuestCardTemp({
                 title={showDescription ? "Hide details" : "Show details"}
               >
                 <svg
-                  width="20"
-                  height="20"
+                  width="14"
+                  height="14"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -114,7 +183,10 @@ export default function QuestCardTemp({
               <div className="progress-bar-container">
                 <div
                   className="progress-bar-fill"
-                  style={{ width: `${progressPercentage}%` }}
+                  style={{
+                    width: `${progressPercentage}%`,
+                    background: pathInfo.progressGradient || pathInfo.gradient,
+                  }}
                 >
                   {progressPercentage > 10 && (
                     <span className="progress-inner-text">
@@ -131,16 +203,26 @@ export default function QuestCardTemp({
         </div>
 
         <div className="QuestCardIcon">
-          <img src={QuestImage || TestImage} alt="quest" />
+          <img src={TestImage} alt="quest" />
         </div>
 
         <div className="QuestCardXPandCoinsParent">
-          {trackingType === "auto" && <span className="auto-badge">AUTO</span>}
+          <span
+            className="path-badge"
+            style={{
+              background: pathInfo.gradient,
+              borderColor: pathInfo.color,
+            }}
+          >
+            <span className="path-icon">{pathInfo.icon}</span>
+            <span className="path-name">{pathInfo.name}</span>
+          </span>
 
-          <span className="QuestXP">{QuestXP || "+1XP"}</span>
+          <span className="QuestXP">{QuestXP || "+0 XP"}</span>
+
           {QuestCoin !== undefined && QuestCoin !== null && (
             <span className="QuestCoinsRow">
-              <img className="CoinsImg" src={CoinsImg} alt="" />
+              <img className="CoinsImg" src={CoinsImg} alt="coins" />
               <span className="QuestCoins">{QuestCoin}</span>
             </span>
           )}

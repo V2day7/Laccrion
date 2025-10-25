@@ -2121,3 +2121,116 @@ function ReadUserWorkouts($user_id) {
         'workouts' => $workouts
     ]);
 }
+
+function getUserInventory($user_id, $filters = []) {
+    global $con;
+
+    $limit = isset($filters['limit']) ? (int)$filters['limit'] : 20;
+    $offset = isset($filters['offset']) ? (int)$filters['offset'] : 0;
+    $search = isset($filters['search']) ? trim($filters['search']) : '';
+
+    try {
+        // ✅ Count total inventory items (with search filter)
+        $count_query = "
+            SELECT COUNT(*) as total
+            FROM user_inventory_tbl ui
+            INNER JOIN meals_tbl m ON ui.meal_id = m.meal_id
+            WHERE ui.user_id = ?
+        ";
+
+        $count_params = [$user_id];
+        $count_types = "i";
+
+        if (!empty($search)) {
+            $count_query .= " AND m.name LIKE ?";
+            $count_params[] = "%$search%";
+            $count_types .= "s";
+        }
+
+        $stmt = $con->prepare($count_query);
+        $stmt->bind_param($count_types, ...$count_params);
+        $stmt->execute();
+        $count_result = $stmt->get_result();
+        $total = $count_result->fetch_assoc()['total'];
+        $stmt->close();
+
+        // ✅ Get inventory items with meal details and nutrition
+        $query = "
+            SELECT 
+                ui.inventory_id,
+                ui.user_id,
+                ui.meal_id,
+                ui.acquired_at,
+                m.name,
+                m.price_coins as price,
+                m.image_url,
+                mn.calories,
+                mn.protein,
+                mn.carbs,
+                mn.fat
+            FROM user_inventory_tbl ui
+            INNER JOIN meals_tbl m ON ui.meal_id = m.meal_id
+            LEFT JOIN meal_nutrition_tbl mn ON m.meal_id = mn.meal_id
+            WHERE ui.user_id = ?
+        ";
+
+        $query_params = [$user_id];
+        $query_types = "i";
+
+        if (!empty($search)) {
+            $query .= " AND m.name LIKE ?";
+            $query_params[] = "%$search%";
+            $query_types .= "s";
+        }
+
+        $query .= " ORDER BY ui.acquired_at DESC LIMIT ? OFFSET ?";
+        $query_params[] = $limit;
+        $query_params[] = $offset;
+        $query_types .= "ii";
+
+        $stmt = $con->prepare($query);
+        $stmt->bind_param($query_types, ...$query_params);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $inventory = [];
+        while ($row = $result->fetch_assoc()) {
+            $inventory[] = [
+                'inventory_id' => (int)$row['inventory_id'],
+                'user_id' => (int)$row['user_id'],
+                'meal_id' => (int)$row['meal_id'],
+                'name' => $row['name'],
+                'price' => (int)$row['price'],
+                'image_url' => $row['image_url'],
+                'acquired_at' => $row['acquired_at'],
+                'calories' => $row['calories'] ? (float)$row['calories'] : null,
+                'protein' => $row['protein'] ? (float)$row['protein'] : null,
+                'carbs' => $row['carbs'] ? (float)$row['carbs'] : null,
+                'fat' => $row['fat'] ? (float)$row['fat'] : null
+            ];
+        }
+
+        $stmt->close();
+
+        // ✅ Calculate pagination info
+        $has_more = ($offset + $limit) < $total;
+
+        return [
+            'status' => 200,
+            'message' => 'Inventory retrieved successfully',
+            'total' => $total,
+            'limit' => $limit,
+            'offset' => $offset,
+            'has_more' => $has_more,
+            'inventory' => $inventory
+        ];
+
+    } catch (Exception $e) {
+        error_log("getUserInventory Error: " . $e->getMessage());
+        return [
+            'status' => 500,
+            'message' => 'Server error: ' . $e->getMessage(),
+            'inventory' => []
+        ];
+    }
+}

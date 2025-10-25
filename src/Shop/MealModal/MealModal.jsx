@@ -3,7 +3,13 @@ import "./MealModal.css";
 import axios from "axios";
 import SuccessAnimation from "../../SuccessAnimation/SuccessAnimation";
 
-export default function MealModal({ meal, onClose, onPurchaseSuccess }) {
+export default function MealModal({
+  meal,
+  onClose,
+  onPurchaseSuccess,
+  showPurchaseButton = true, // ✅ NEW: Toggle purchase button
+  isInventoryView = false, // ✅ NEW: Different styling for inventory
+}) {
   const [purchasing, setPurchasing] = useState(false);
   const [error, setError] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -177,15 +183,30 @@ export default function MealModal({ meal, onClose, onPurchaseSuccess }) {
 
         {error && <div className="modal-error">{error}</div>}
 
-        <button
-          className="purchase-btn"
-          onClick={handlePurchase}
-          disabled={purchasing}
-        >
-          {purchasing
-            ? "Processing..."
-            : `🛒 Purchase for ${meal.price_coins || meal.price} coins`}
-        </button>
+        {/* ✅ Conditionally show purchase button */}
+        {showPurchaseButton && (
+          <button
+            className="purchase-btn"
+            onClick={handlePurchase}
+            disabled={purchasing}
+          >
+            {purchasing
+              ? "Processing..."
+              : `🛒 Purchase for ${meal.price_coins || meal.price} coins`}
+          </button>
+        )}
+
+        {/* ✅ Show acquired date for inventory view */}
+        {isInventoryView && meal.acquired_at && (
+          <div className="modal-acquired-date">
+            📅 Acquired:{" "}
+            {new Date(meal.acquired_at).toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

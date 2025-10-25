@@ -8,20 +8,24 @@ export default function InventoryCardTemp({
   macros,
   acquiredDate,
   price,
+  onClick, // ✅ NEW: Click handler to open modal
 }) {
   return (
-    <article className="inv-card">
+    <article
+      className="inv-card"
+      onClick={onClick}
+      style={{ cursor: "pointer" }}
+    >
+      {" "}
+      {/* ✅ Add click handler */}
       {/* Owned Badge */}
       <div className="owned-badge">✅ Owned</div>
-
       {/* Image */}
       <div className="inv-card__media">
         <img src={image || defaultImage} alt={name} />
       </div>
-
       {/* Meal Name */}
       <div className="inv-card__title">{name}</div>
-
       {/* Macros Grid */}
       <div className="inv-card__macros">
         <div className="macro">
@@ -41,7 +45,6 @@ export default function InventoryCardTemp({
           <div className="macro__label">Fat</div>
         </div>
       </div>
-
       {/* Acquisition Info */}
       <div className="inv-card__info">
         <div className="info-row">
@@ -53,9 +56,8 @@ export default function InventoryCardTemp({
           <span className="info-value">💰 {price} coins</span>
         </div>
       </div>
-
       {/* Use Button */}
-      <button className="use-btn">🍽️ Use Meal</button>
+      {/* <button className="use-btn">🍽️ Use Meal</button> */}
     </article>
   );
 }

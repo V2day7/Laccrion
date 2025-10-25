@@ -273,56 +273,6 @@ export default function Homepage() {
       });
   };
 
-  // Render Daily Quest Content
-  const renderDailyQuestContent = () => {
-    if (loading) {
-      return (
-        <div style={{ padding: "20px", textAlign: "center", color: "#888" }}>
-          Loading quests...
-        </div>
-      );
-    }
-
-    if (error) {
-      return (
-        <div
-          style={{
-            padding: "20px",
-            textAlign: "center",
-            color: error.includes("Come back tomorrow") ? "#4CAF50" : "red",
-          }}
-        >
-          {error}
-        </div>
-      );
-    }
-
-    if (dailyQuests.length === 0) {
-      return (
-        <div style={{ padding: "20px", textAlign: "center", color: "#4CAF50" }}>
-          🎉 All daily quests completed! Come back tomorrow!
-        </div>
-      );
-    }
-
-    return dailyQuests.map((quest, i) => (
-      <QuestCardTemp
-        key={quest.quest_id}
-        quest_id={quest.quest_id}
-        QuestText={quest.QuestText}
-        QuestXP={quest.QuestXP}
-        QuestCoin={quest.QuestCoin}
-        checked={checkedStates[i]}
-        onCheck={() =>
-          setCheckedStates((prev) =>
-            prev.map((val, idx) => (idx === i ? !val : val))
-          )
-        }
-        onComplete={(quest_id) => handleQuestComplete(quest_id, i)}
-      />
-    ));
-  };
-
   const handleBonusComplete = (bonus_id, index) => {
     if (!userId) {
       alert("Please log in to complete bonus rewards!");
@@ -394,6 +344,98 @@ export default function Homepage() {
       });
   };
 
+  // ✅ FIXED: Render Daily Quest Content
+  const renderDailyQuestContent = () => {
+    if (loading) {
+      return (
+        <div style={{ padding: "20px", textAlign: "center", color: "#888" }}>
+          Loading quests...
+        </div>
+      );
+    }
+
+    if (error) {
+      return (
+        <div
+          style={{
+            padding: "20px",
+            textAlign: "center",
+            color: error.includes("Come back tomorrow") ? "#4CAF50" : "red",
+          }}
+        >
+          {error}
+        </div>
+      );
+    }
+
+    if (dailyQuests.length === 0) {
+      return (
+        <div style={{ padding: "20px", textAlign: "center", color: "#4CAF50" }}>
+          🎉 All daily quests completed! Come back tomorrow!
+        </div>
+      );
+    }
+
+    return dailyQuests.map((quest, i) => (
+      <QuestCardTemp
+        key={quest.quest_id}
+        quest_id={quest.quest_id}
+        QuestText={quest.QuestText}
+        QuestXP={quest.QuestXP}
+        QuestCoin={quest.QuestCoin}
+        checked={checkedStates[i]}
+        onCheck={() =>
+          setCheckedStates((prev) =>
+            prev.map((val, idx) => (idx === i ? !val : val))
+          )
+        }
+        onComplete={(quest_id) => handleQuestComplete(quest_id, i)}
+        trackingType="manual"
+        description=""
+        trackingCondition=""
+      />
+    ));
+  };
+
+  // ✅ FIXED: Render User Workouts
+  const renderUserWorkouts = () => {
+    if (workoutsLoading) {
+      return (
+        <div style={{ padding: "20px", textAlign: "center", color: "#888" }}>
+          Loading workouts...
+        </div>
+      );
+    }
+
+    if (userWorkouts.length === 0) {
+      return (
+        <div style={{ padding: "20px", textAlign: "center", color: "#888" }}>
+          No active workout programs. Click + to add one!
+        </div>
+      );
+    }
+
+    return userWorkouts.map((workout, i) => (
+      <QuestCardTemp
+        key={workout.program_id}
+        quest_id={workout.program_id}
+        QuestText={workout.workout_name}
+        QuestXP={`+${workout.xp_reward} XP`}
+        QuestCoin={workout.coin_reward}
+        checked={workoutCheckedStates[i]}
+        onCheck={() =>
+          setWorkoutCheckedStates((prev) =>
+            prev.map((val, idx) => (idx === i ? !val : val))
+          )
+        }
+        onComplete={(program_id) => handleWorkoutComplete(program_id, i)}
+        trackingType="manual"
+        description=""
+        trackingCondition=""
+      />
+    ));
+  };
+
   const renderBonusRewards = () => {
     if (bonusLoading) {
       return (
@@ -462,42 +504,6 @@ export default function Homepage() {
         </div>
       );
     });
-  };
-
-  // ✅ NEW: Render User Workouts
-  const renderUserWorkouts = () => {
-    if (workoutsLoading) {
-      return (
-        <div style={{ padding: "20px", textAlign: "center", color: "#888" }}>
-          Loading workouts...
-        </div>
-      );
-    }
-
-    if (userWorkouts.length === 0) {
-      return (
-        <div style={{ padding: "20px", textAlign: "center", color: "#888" }}>
-          No active workout programs. Click + to add one!
-        </div>
-      );
-    }
-
-    return userWorkouts.map((workout, i) => (
-      <QuestCardTemp
-        key={workout.program_id}
-        quest_id={workout.program_id}
-        QuestText={workout.workout_name}
-        QuestXP={`+${workout.xp_reward} XP`}
-        QuestCoin={workout.coin_reward}
-        checked={workoutCheckedStates[i]}
-        onCheck={() =>
-          setWorkoutCheckedStates((prev) =>
-            prev.map((val, idx) => (idx === i ? !val : val))
-          )
-        }
-        onComplete={(program_id) => handleWorkoutComplete(program_id, i)}
-      />
-    ));
   };
 
   const handleButtonClick = () => {
